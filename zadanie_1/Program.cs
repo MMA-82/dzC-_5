@@ -1,22 +1,19 @@
 ﻿Console.WriteLine("Две прямые заданы уравнениями вида y = k*x + b");
-double[,] matrix = new double[2, 2];
-for(int i=0; i<matrix.GetLength(0); i++)
+double[] karray = new double[2];
+double[] barray = new double[2];
+for(int i = 0; i < karray.Length; i++)
 {
-    for(int j=0; j<matrix.GetLength(1); j++)
-    {
-        matrix[i, j] = new Random().Next(0, 10);
-    }
-}
-Console.WriteLine("k1 = " + matrix[0, 0]);
-Console.WriteLine("k2 = " + matrix[0, 1]);
-Console.WriteLine("b1 = " + matrix[1, 0]);
-Console.WriteLine("b2 = " + matrix[1, 1]);
+   karray[i] = new Random().Next(-5, 5);
+   barray[i] = new Random().Next(-5, 5);
+   Console.WriteLine($"Коэффициент k{i+1} = {karray[i]}, ");
+   Console.WriteLine($"Коэффициент b{i+1} = {barray[i]}, ");
+}   
 Console.WriteLine();
 
-if(matrix[0, 0] == matrix[0, 1]) Console.WriteLine("Данные прямые не пересекаются!");
+if(karray[0] == karray[1]) Console.WriteLine("Данные прямые не пересекаются!");
 else
 {
-    double x = (matrix[1, 1] - matrix[1, 0] / matrix[0, 0] - matrix[0, 1]);
-    double y = x * matrix[0, 0] + matrix[1, 0];
+    double x = (barray[1] - barray[0]) / (karray[0] - karray[1]);
+    double y = x * karray[0] + barray[0];
     Console.WriteLine($"Координаты точки пересечения прямой: ({x}, {y})");
 } 
